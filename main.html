@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- MADE BY TWYGZI -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine</title>
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            background-color: pink;
+        }
+
+        .d1 {
+            display: flex;
+            justify-content: center;
+            margin-top: 5%;
+        }
+
+        .d2 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: palevioletred;
+            font-family: Arial, Helvetica, sans-serif;
+            font-style: italic;
+        }
+
+        h2 {
+            text-align: center;
+            color: palevioletred;
+            font-family: Arial, Helvetica, sans-serif;
+            font-style: italic;
+        }
+
+        h3 {
+            color: palevioletred;
+            font-family: Arial, Helvetica, sans-serif;
+            font-style: italic;
+        }
+
+        h4 {
+            color: palevioletred;
+            font-family: Arial, Helvetica, sans-serif;
+            font-style: italic;
+        }
+
+        img {
+            width: 50%;
+        }
+
+        .b1 {
+            display: flex;
+            justify-content: center;
+            margin-top: 25px;
+            gap: 5%;
+        }
+
+        .button-container {
+            position: absolute;
+            width: 100%;
+            top: 10px;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            z-index: 1000;
+        }
+
+        button {
+            padding: 15px 30px;
+            border-radius: 15px;
+            font-size: 20px;
+            border: none;
+            cursor: pointer;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .y:hover {
+            background-color: rgb(2, 85, 2);
+        }
+
+        .y {
+            background-color: rgb(1, 174, 1);
+        }
+
+        .n:hover {
+            background-color: rgb(134, 3, 3);
+        }
+
+        .n {
+            background-color: rgb(255, 0, 0);
+        }
+
+        #spotifyEmbed {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #backButton {
+            padding: 10px 15px;
+            font-size: 18px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            background-color: palevioletred;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        #backButton:hover {
+            background-color: rgb(150, 66, 80);
+        }
+
+        #photoCollage {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #photoCollage img {
+            width: 150px;
+            height: 150px;
+            margin: 10px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        #photoCollage img:hover {
+            transform: scale(1.1);
+        }
+
+        #nextButton {
+            padding: 10px 15px;
+            font-size: 18px;
+            font-family: Arial, Helvetica, sans-serif;
+            border: none;
+            border-radius: 10px;
+            background-color: palevioletred;
+            color: white;
+            cursor: pointer;
+        }
+
+        #nextButton:hover {
+            background-color: rgb(150, 66, 80);
+        }
+
+        #quizSection {
+            font-family: Arial, Helvetica, sans-serif;
+            color: palevioletred;
+        }
+
+        #quizSection img {
+            width: 30%;
+        }
+
+        #quizOptions button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid palevioletred;
+            cursor: pointer;
+            background-color: palevioletred;
+        }
+
+        #quizOptions button:hover {
+            background-color: rgb(150, 66, 80);
+            color: white;
+        }
+
+        .final-image {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 4px solid palevioletred;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .final-image:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5rem;
+                text-align: center;
+                margin-bottom: 15px;
+            }
+
+            img {
+                width: 90%;
+                max-width: 250px;
+            }
+
+            button {
+                font-size: 0.9rem;
+                padding: 8px 16px;
+            }
+
+            .b1 {
+                flex-wrap: wrap;
+                gap: 15px;
+                margin-top: 20px;
+            }
+        }
+
+        .heart {
+            position: fixed;
+            bottom: 0;
+            width: 40px;
+            height: 40px;
+            background-color: palevioletred;
+            transform: rotate(-45deg);
+            animation: float 5s linear infinite;
+            z-index: 1000;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: palevioletred;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -20px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: 20px;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(-45deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100vh) rotate(-45deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<!-- Created by TWYGZI | © 2025 -->
+<body>
+    <div class="button-container">
+        <button id="backButton" style="display: none; margin-top: 20px">&#8592; Back</button>
+        <button id="nextButton" style="display: none; margin-top: 20px;">Next &#8594;</button>
+    </div>
+    <div class="d1">
+        <div class="d2">
+            <img src="icegif.gif" id="imageDisplay" alt="Valentine">
+            <h1 id="valentineQuestion">Will you be my valentine?</h1>
+        </div>
+    </div>
+    <div class="b1" id="responseButtons">
+        <button class="y" id="yesButton">Yes</button>
+        <button class="n" id="noButton">No</button>
+    </div>
+    <div id="spotifyEmbed" style="display: none; margin-top: 20px;"></div><br>
+    <h2 id="herText" style="display: none;">You're cute pictures!!</h2>
+    <div id="photoCollage" style="display: none; margin-top: 20px;"></div>
+
+    <div id="quizSection" style="display: none; text-align: center; margin-top: 20px;">
+        <h2>Quiz Time!</h2>
+        <p id="quizQuestion">What's my favorite color?</p>
+        <div id="quizOptions">
+            <button class="quizOption">Red</button>
+            <button class="quizOption">Light-Blue</button>
+            <button class="quizOption">Turquoise</button>
+            <button class="quizOption">Violet</button>
+        </div>
+        <p id="quizFeedback" style="display: none; font-size: 18px; color: palevioletred; margin-top: 10px;"></p>
+    </div>
+    <div id="finalMessage" style="display: none; text-align: center; margin-top: 20px;">
+        <h2 style="color: palevioletred; font-family: Arial, Helvetica, sans-serif;">You're the best!</h2>
+        <h3 style="color: palevioletred; font-family: Arial, Helvetica, sans-serif;">From your...</h3>
+        <h4 style="color: palevioletred; font-family: Arial, Helvetica, sans-serif;">Your name.</h4>
+        <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
+            <div style="position: relative;">
+                <img src="./myphoto1.jpg" alt="Your Photo 1" class="final-image">
+            </div>
+            <div style="position: relative;">
+                <img src="./myphoto2.jpg" alt="Your Photo 2" class="final-image">
+            </div>
+        </div>
+    </div>
+
+<!-- Created by TWYGZI | © 2025 -->
+
+    <script type="module">
+        import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+
+        const yesButton = document.getElementById('yesButton');
+        const noButton = document.getElementById('noButton');
+        const imageDisplay = document.getElementById('imageDisplay');
+        const valentineQuestion = document.getElementById('valentineQuestion');
+        const herText = document.getElementById('herText');
+        const responseButtons = document.getElementById('responseButtons');
+        const spotifyEmbed = document.getElementById('spotifyEmbed');
+        const backButton = document.getElementById('backButton');
+        const nextButton = document.getElementById("nextButton");
+        const quizSection = document.getElementById("quizSection");
+        const quizQuestion = document.getElementById("quizQuestion");
+        const quizOptions = document.getElementById("quizOptions");
+        const quizFeedback = document.getElementById("quizFeedback");
+
+        let noClickCount = 0;
+        const messages = [
+            "No", "Are you sure??", "Baby please!", "Don't do this to me :(",
+            "You're breaking my heart", "I'm gonna cry..."
+        ];
+        const imagePaths = [
+            "./icegif.gif", "./huggif.gif", "./beggif.gif",
+            "./mochagif.gif", "./sadmocha.gif", "./crymocha.png",
+            "./kissgif.gif"
+        ];
+        const collageImages = [
+            "./photo1.jpg",
+            "./photo2.jpg",
+            "./photo3.jpg",
+            "./photo4.jpg",
+            "./photo5.jpg",
+            "./photo6.jpg",
+            "./photo7.jpg",
+        ];
+
+        const photoCollage = document.getElementById("photoCollage");
+
+        let heartInterval;
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = `${Math.random() * 100}vw`;
+            heart.style.animationDuration = `${Math.random() * 2 + 3}s`;
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 5000);
+        }
+        let currentQuestionIndex = 0;
+
+        const quizData = [
+            {
+                question: "What's my favorite color?",
+                options: ["Red", "Light-Blue", "Turquoise", "Violet"],
+                correct: "Turquoise",
+            },
+            {
+                question: "What's my favorite food?",
+                options: ["Pizza", "Burger", "Sushi", "Tacos"],
+                correct: "Burger",
+            },
+            {
+                question: "What's my favorite movie?",
+                options: ["Titanic", "Inception", "Fight Club", "The Notebook"],
+                correct: "The Notebook",
+            },
+        ];
+
+        noButton.addEventListener('click', () => {
+            if (noClickCount < messages.length - 1) {
+                noButton.textContent = messages[++noClickCount];
+                imageDisplay.src = imagePaths[noClickCount];
+            }
+
+            const scaleFactor = 1 + noClickCount * 0.6;
+            yesButton.style.transform = `scale(${scaleFactor})`;
+
+            responseButtons.style.gap = `${50 + noClickCount * 30}px`;
+            responseButtons.style.marginTop = `${10 + noClickCount * 10}px`;
+        });
+
+        yesButton.addEventListener('click', () => {
+            imageDisplay.src = "./kissgif.gif";
+            valentineQuestion.textContent = "Yayyy!!";
+            responseButtons.style.display = 'none';
+            confetti();
+
+            spotifyEmbed.innerHTML = `
+                <iframe style="border-radius:12px" 
+                        src="https://open.spotify.com/embed/track/2ZWlPOoWh0626oTaHrnl2a?utm_source=generator" 
+                        width="50%" 
+                        height="152" 
+                        frameborder="0" 
+                        allowfullscreen="" 
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                        loading="lazy">
+                </iframe>
+            `;
+            spotifyEmbed.style.display = 'block';
+            backButton.style.display = 'block';
+            nextButton.style.display = "block";
+
+            heartInterval = setInterval(createHeart, 800);
+
+            herText.style.display = "block";
+            photoCollage.style.display = "block";
+            photoCollage.innerHTML = collageImages
+                .map(
+                    (src) => `<img src="${src}" alt="Collage Image">`
+                )
+                .join("");
+        });
+
+        backButton.addEventListener("click", () => {
+            if (quizSection.style.display === "block") {
+                quizSection.style.display = "none";
+                document.getElementById("finalMessage").style.display = "none";
+                herText.style.display = "block";
+                photoCollage.style.display = "block";
+                nextButton.style.display = "block";
+                imageDisplay.style.display = "block";
+                spotifyEmbed.style.display = "block";
+                valentineQuestion.style.display = "block";
+                resetQuiz();
+            } else {
+                imageDisplay.src = "./icegif.gif";
+                valentineQuestion.textContent = "Will you be my valentine?";
+                responseButtons.style.display = "flex";
+                spotifyEmbed.style.display = "none";
+                backButton.style.display = "none";
+                noClickCount = 0;
+                noButton.textContent = "No";
+                yesButton.style.transform = "scale(1)";
+                clearInterval(heartInterval);
+                herText.style.display = "none";
+                photoCollage.style.display = "none";
+                nextButton.style.display = "none";
+                quizSection.style.display = "none";
+                resetQuiz();
+            }
+        });
+
+        nextButton.addEventListener("click", () => {
+
+            herText.style.display = "none";
+            photoCollage.style.display = "none";
+            nextButton.style.display = "none";
+            quizSection.style.display = "block";
+            backButton.style.display = "block";
+            imageDisplay.style.display = "none";
+            spotifyEmbed.style.display = "none";
+            valentineQuestion.style.display = "none";
+            resetQuiz();
+            loadQuizQuestion();
+        });
+
+        function resetQuiz() {
+            quizSection.innerHTML =
+                `<h2>Quiz Time!</h2>
+            <p id="quizQuestion"></p>
+            <div id="quizOptions"></div>
+            <p id="quizFeedback" style="display: none; font-size: 18px; color: palevioletred; margin-top: 10px;"></p>`;
+            currentQuestionIndex = 0;
+        }
+
+        function loadQuizQuestion() {
+            const currentQuestion = quizData[currentQuestionIndex];
+            const quizQuestion = document.querySelector("#quizQuestion");
+            const quizOptions = document.querySelector("#quizOptions");
+
+            quizQuestion.textContent = currentQuestion.question;
+            quizOptions.innerHTML = currentQuestion.options
+                .map((option) => `<button class="quizOption">${option}</button>`)
+                .join("");
+
+            document.querySelectorAll(".quizOption").forEach((button) => {
+                button.addEventListener("click", () => {
+                    handleAnswer(button.textContent);
+                });
+            });
+        }
+
+        function handleAnswer(selectedOption) {
+            const currentQuestion = quizData[currentQuestionIndex];
+            const quizFeedback = document.querySelector("#quizFeedback");
+
+            if (selectedOption === currentQuestion.correct) {
+                quizFeedback.style.color = "green";
+                quizFeedback.textContent = "Correct!🎉";
+            } else {
+                quizFeedback.style.color = "red";
+                quizFeedback.textContent = "Oops! That's not correct.";
+            }
+
+            quizFeedback.style.display = "block";
+
+            setTimeout(() => {
+                quizFeedback.style.display = "none";
+                currentQuestionIndex++;
+
+                if (currentQuestionIndex < quizData.length) {
+                    loadQuizQuestion();
+                } else {
+                    quizSection.innerHTML = "<h2>Quiz Complete! You're awesome!!</h2>" + '<img src="./jump-bear.gif">';
+                    document.getElementById("finalMessage").style.display = "block";
+                }
+            }, 2000);
+        }
+        // Created by TWYGZI | © 2025
+    </script>
+</body>
+
+</html>
