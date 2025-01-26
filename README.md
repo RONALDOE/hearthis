@@ -29,7 +29,9 @@ Customizable Content:
 Technologies Used
 
 HTML: Provides the structure for the web page.
+
 CSS: Adds styling for the romantic and engaging interface.
+
 JavaScript: Handles interactivity, animations, and quiz logic.
 
 
