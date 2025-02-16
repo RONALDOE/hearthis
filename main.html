@@ -63,6 +63,7 @@
         }
 
         .button-container {
+            margin-top: 30px;
             position: absolute;
             width: 100%;
             top: 10px;
@@ -88,6 +89,8 @@
         }
 
         .y {
+            margin-top: 30px;
+
             background-color: rgb(1, 174, 1);
         }
 
@@ -96,6 +99,8 @@
         }
 
         .n {
+            margin-top: 30px;
+
             background-color: rgb(255, 0, 0);
         }
 
@@ -104,7 +109,10 @@
             margin-top: 20px;
             text-align: center;
         }
-
+.absolute{
+    position: absolute;
+    transform: translatey(500%);
+}
         #backButton {
             padding: 10px 15px;
             font-size: 18px;
@@ -272,7 +280,7 @@
     <div class="d1">
         <div class="d2">
             <img src="icegif.gif" id="imageDisplay" alt="Valentine">
-            <h1 id="valentineQuestion">Will you be my valentine?</h1>
+            <h1 id="valentineQuestion">Will you be my valentine? (Aunque ya lo somos)</h1>
         </div>
     </div>
     <div class="b1" id="responseButtons">
@@ -290,20 +298,21 @@
             <button class="quizOption">Red</button>
             <button class="quizOption">Light-Blue</button>
             <button class="quizOption">Turquoise</button>
-            <button class="quizOption">Violet</button>
+            <button class="quizOption">Green</button>
         </div>
         <p id="quizFeedback" style="display: none; font-size: 18px; color: palevioletred; margin-top: 10px;"></p>
     </div>
     <div id="finalMessage" style="display: none; text-align: center; margin-top: 20px;">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1IfIgJVCZzao7AIhmYQn2h?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> 
         <h2 style="color: palevioletred; font-family: Arial, Helvetica, sans-serif;">You're the best!</h2>
-        <h3 style="color: palevioletred; font-family: Arial, Helvetica, sans-serif;">From your...</h3>
-        <h4 style="color: palevioletred; font-family: Arial, Helvetica, sans-serif;">Your name.</h4>
+        <h3 style="color: palevioletred; font-family: Arial, Helvetica, sans-serif;">Your Boyfriend</h3>
+        <h4 style="color: palevioletred; font-family: Arial, Helvetica, sans-serif;">Ronaldo Suero C</h4>
         <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
             <div style="position: relative;">
-                <img src="./myphoto1.jpg" alt="Your Photo 1" class="final-image">
+                <img src="./images/myphoto1.jpg" alt="Your Photo 1" class="final-image">
             </div>
             <div style="position: relative;">
-                <img src="./myphoto2.jpg" alt="Your Photo 2" class="final-image">
+                <img src="./images/myphoto2.jpg" alt="Your Photo 2" class="final-image">
             </div>
         </div>
     </div>
@@ -329,22 +338,22 @@
 
         let noClickCount = 0;
         const messages = [
-            "No", "Are you sure??", "Baby please!", "Don't do this to me :(",
-            "You're breaking my heart", "I'm gonna cry..."
+            "No", "Are you sure??", "Baby please!", "Don't do this to me :(", "Pleaseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", 
+            "You're breaking my heart", "I'm gonna cry...", "So we are gonna do this uh.",
         ];
         const imagePaths = [
-            "./icegif.gif", "./huggif.gif", "./beggif.gif",
-            "./mochagif.gif", "./sadmocha.gif", "./crymocha.png",
-            "./kissgif.gif"
+            "./images/icegif.gif", "./images/huggif.gif", "./images/beggif.gif",
+            "./images/mochagif.gif", "./images/sadmocha.gif", "./images/crymocha.png",
+            "./images/kissgif.gif"
         ];
         const collageImages = [
-            "./photo1.jpg",
-            "./photo2.jpg",
-            "./photo3.jpg",
-            "./photo4.jpg",
-            "./photo5.jpg",
-            "./photo6.jpg",
-            "./photo7.jpg",
+            "./images/photo1.jpg",
+            "./images/photo2.jpg",
+            "./images/photo3.jpg",
+            "./images/photo4.jpg",
+            "./images/photo5.jpg",
+            "./images/photo6.jpg",
+            "./images/photo7.jpg",
         ];
 
         const photoCollage = document.getElementById("photoCollage");
@@ -364,8 +373,8 @@
         const quizData = [
             {
                 question: "What's my favorite color?",
-                options: ["Red", "Light-Blue", "Turquoise", "Violet"],
-                correct: "Turquoise",
+                options: ["Red", "Light-Blue", "Green", "Violet"],
+                correct: "Green",
             },
             {
                 question: "What's my favorite food?",
@@ -374,8 +383,13 @@
             },
             {
                 question: "What's my favorite movie?",
-                options: ["Titanic", "Inception", "Fight Club", "The Notebook"],
-                correct: "The Notebook",
+                options: ["Titanic", "Inception", "Forrest Gump", "The Notebook"],
+                correct: "Forrest Gump",
+            },
+            {
+                question: "Whats my pet's name?",
+                options: ["Queli", "Kelly", "Lesli", "Kerli"],
+                correct: "Kelly",
             },
         ];
 
@@ -383,6 +397,10 @@
             if (noClickCount < messages.length - 1) {
                 noButton.textContent = messages[++noClickCount];
                 imageDisplay.src = imagePaths[noClickCount];
+            }
+            if(noClickCount === messages.length -1){
+                noButton.classList.add("absolute");
+                noButton.addEventListener("pointerenter", moveNoButton)
             }
 
             const scaleFactor = 1 + noClickCount * 0.6;
@@ -393,7 +411,7 @@
         });
 
         yesButton.addEventListener('click', () => {
-            imageDisplay.src = "./kissgif.gif";
+            imageDisplay.src = "./images/kissgif.gif";
             valentineQuestion.textContent = "Yayyy!!";
             responseButtons.style.display = 'none';
             confetti();
@@ -401,7 +419,7 @@
             spotifyEmbed.innerHTML = `
                 <iframe style="border-radius:12px" 
                         src="https://open.spotify.com/embed/track/2ZWlPOoWh0626oTaHrnl2a?utm_source=generator" 
-                        width="50%" 
+                        width="98%" 
                         height="152" 
                         frameborder="0" 
                         allowfullscreen="" 
@@ -436,7 +454,7 @@
                 valentineQuestion.style.display = "block";
                 resetQuiz();
             } else {
-                imageDisplay.src = "./icegif.gif";
+                imageDisplay.src = "./images/icegif.gif";
                 valentineQuestion.textContent = "Will you be my valentine?";
                 responseButtons.style.display = "flex";
                 spotifyEmbed.style.display = "none";
@@ -514,11 +532,19 @@
                 if (currentQuestionIndex < quizData.length) {
                     loadQuizQuestion();
                 } else {
-                    quizSection.innerHTML = "<h2>Quiz Complete! You're awesome!!</h2>" + '<img src="./jump-bear.gif">';
+                    quizSection.innerHTML = "<h2>Quiz Complete! You're awesome!!</h2>" + '<img src="./images/jump-bear.gif">';
                     document.getElementById("finalMessage").style.display = "block";
                 }
             }, 2000);
         }
+        const moveNoButton = () => {
+  var x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+  var y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+
+  noButton.style.position = 'absolute';
+  noButton.style.left = `${x}px`;
+  noButton.style.top = `${y}px`;
+}
         // Created by TWYGZI | © 2025
     </script>
 </body>
